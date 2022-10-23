@@ -87,7 +87,31 @@
     </div>
   </main>
 
-  <div class="climate-news"></div>
+  <div class="climate-news">
+    <div class="content-wrapper container">
+      <div class="content-label">
+        <p>Latest Climate News</p>
+      </div>
+      <div class="carousel-wrapper container">
+        <div class="carousel-main">
+          <div class="item" *ngFor="let news of climateNews">
+            <div class="poster" *ngIf="news.urlToImage">
+              <img [src]="news.urlToImage" [alt]="news.title" />
+              <p>{{ news.title }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="prev-next-buttons">
+          <button type="button" class="prev" appPrev>
+            <fa-icon [icon]="faCircleChevronLeft"></fa-icon>
+          </button>
+          <button type="button" class="next" appNext>
+            <fa-icon [icon]="faCircleChevronRight"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <footer class="footer">
     <p class="subheading">
@@ -102,7 +126,7 @@
     <p>admin@gdf.org</p>
     <p>+1 727-601-2820</p>
     <div class="copyright">
-      <p>Copyright &copy; {{ currentYear }}, {{ title }}.</p>
+      <p>Copyright &copy; {{ currentYear }} {{ title }}.</p>
     </div>
   </footer>
 </div>

@@ -12,18 +12,8 @@
   font: inherit;
 }
 
-ul[role="list"],
-ol[role="list"] {
-  list-style: none;
-}
-
-html:focus-within {
-  scroll-behavior: smooth;
-}
-
-html,
-body {
-  height: 100%;
+a:not([class]) {
+  text-decoration-skip-ink: auto;
 }
 
 body {
@@ -31,26 +21,6 @@ body {
   line-height: 1.5;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-}
-
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-}
-
-img,
-picture,
-svg {
-  max-width: 100%;
-  display: block;
-  height: auto;
-}
-
-header {
-  background: rgba(3, 15, 13, 0.85);
-  text-align: center;
-  position: fixed;
-  z-index: 999;
-  width: 100%;
 }
 
 .btn-lg {
@@ -81,6 +51,10 @@ header {
   text-decoration: none;
 }
 
+.climate-news {
+  grid-area: news;
+}
+
 .content {
   grid-area: main;
   margin: 3rem auto;
@@ -90,6 +64,11 @@ header {
     "funding"
     "donations"
     "resources";
+}
+
+.content-label p {
+  font-style: bold;
+  font-weight: 700;
 }
 
 .copyright {
@@ -122,6 +101,36 @@ header {
 
 .get-funding {
   grid-area: funding;
+}
+
+header {
+  background: rgba(3, 15, 13, 0.85);
+  text-align: center;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+.item {
+  flex: 0 0 50%;
+  margin: 0.3rem;
 }
 
 .logo {
@@ -260,6 +269,11 @@ nav a:hover {
   margin: 0 auto;
 }
 
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
 #user-email {
   margin: 1rem 0;
 }
@@ -270,12 +284,93 @@ nav a:hover {
     "header"
     "mission"
     "main"
+    "news"
     "footer";
+}
+
+/* temp carousel settings */
+
+.carousel-main {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  grid-area: carousel;
+  margin-bottom: 4.5rem;
+  margin-left: 1.5rem;
+  border-style: ridge;
+  border-width: 0.2px;
+  border-radius: 5px;
+  box-shadow: 1.5px 1.5px grey;
+}
+
+.carousel-main::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-wrapper {
+  min-height: 100px;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.content-labels {
+  display: flex;
+  justify-content: space-between;
+  grid-area: labels;
+  padding-top: 24px;
+}
+
+.content-labels p {
+  flex: 0 0 auto;
+}
+
+.content-wrapper {
+  display: grid;
+  margin: 0 auto;
+  grid-template-rows: 50px 1fr;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "labels"
+    "wrapper";
+}
+
+.next {
+  margin-left: 10px;
+}
+
+.poster img {
+  height: 120px;
+}
+
+.prev,
+.next {
+  border: none;
+  background-color: transparent;
+  font-size: 1.5rem;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.prev-next-buttons {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }
 
 @media screen and (min-width: 800px) {
   .card-img-top {
     height: 55vh;
+  }
+
+  .carousel-main {
+    padding: 0 8.5rem;
   }
 
   .content {
@@ -290,6 +385,11 @@ nav a:hover {
   header {
     display: grid;
     grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+  }
+
+  .item {
+    flex: 0 0 30%;
+    margin: 0.5rem;
   }
 
   .logo {
@@ -348,6 +448,10 @@ nav a:hover {
 
   nav a:hover::before {
     transform: scale(1, 1);
+  }
+
+  .poster img {
+    height: 170px;
   }
 }
 
