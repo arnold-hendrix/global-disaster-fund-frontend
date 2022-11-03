@@ -9,7 +9,7 @@ import { IClimateNews } from './climate-news';
   providedIn: 'root',
 })
 export class ClimateNewsService {
-  private baseUrl = environment.base_url;
+  private baseUrl = environment.baseUrl;
 
   private _climateNews!: IClimateNews [];
 
