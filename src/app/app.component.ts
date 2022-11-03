@@ -6,7 +6,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { ClimateNewsService } from './news/climate-news-service';
 import { IClimateNews } from './news/climate-news';
-import { IClimateNewsResults } from './news/climate-news-results';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +15,6 @@ import { IClimateNewsResults } from './news/climate-news-results';
 export class AppComponent implements OnInit, OnDestroy{
   faCircleChevronLeft = faCircleChevronLeft;
   faCircleChevronRight = faCircleChevronRight;
-  climateNewsResults!: IClimateNewsResults;
   climateNews!: IClimateNews[];
   climateNewsSub!: Subscription;
   errorMessage = '';
@@ -43,9 +41,9 @@ export class AppComponent implements OnInit, OnDestroy{
     });
   }
 
-  getClimateNews(newsResults: IClimateNewsResults): IClimateNews[] {
+  getClimateNews(newsResults: IClimateNews []): IClimateNews[] {
     var results: IClimateNews[] = [];
-    var articles = newsResults['articles'];
+    var articles = newsResults;
     for (var article of articles) {
       if (article.content && article.urlToImage && article.description) {
         results.push(article);

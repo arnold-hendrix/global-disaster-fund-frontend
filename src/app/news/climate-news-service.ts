@@ -3,21 +3,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { IClimateNewsResults } from './climate-news-results';
 import { IClimateNews } from './climate-news';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClimateNewsService {
-  today: string = new Date().toISOString();
-  private baseUrl = environment.testEndpoint;
-  private params = {
-    q: 'climate',
-    from: this.today,
-    sortBy: 'popularity',
-    apiKey: environment.apiKey,
-  };
+  private baseUrl = environment.base_url;
+
   private _climateNews!: IClimateNews [];
 
   public get climateNews(): IClimateNews [] {
@@ -30,9 +23,9 @@ export class ClimateNewsService {
 
   constructor(private http: HttpClient) {}
 
-  public getClimateNews(): Observable<IClimateNewsResults> {
+  public getClimateNews(): Observable<IClimateNews[]> {
     return this.http
-      .get<IClimateNewsResults>(`${this.baseUrl}`)
+      .get<IClimateNews[]>(`${this.baseUrl}`)
       .pipe(
         tap((data) => console.log('All', JSON.stringify(data))),
         catchError(this.handleError)
